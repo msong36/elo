@@ -25,7 +25,7 @@
     }
 
     button {
-      width: 2%;
+      min-width: 2%;
       border-radius: 50%;
       cursor: pointer;
     }
@@ -37,8 +37,8 @@
     justify-content: space-evenly;
     border: 1px solid green;
     align-items: center;
-    gap: 10%;
     margin: 5%;
+    margin-bottom: 2%;
 
     [type="radio"] {
       position: absolute;
@@ -59,6 +59,19 @@
 
     .text {
       font-size: 40px;
+    }
+  }
+
+  .next-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 5%;
+    button {
+      background: green;
+      width: 25%;
+      height: 5vh;
+      cursor: pointer;
     }
   }
 }
