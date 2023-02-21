@@ -1,44 +1,42 @@
 .task-container {
   border: 1px solid black;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 3%;
   display: flex;
   flex-direction: column;
-  min-height: 75vh;
+  min-height: 65vh;
+  gap: 2em;
 
   .heading {
     border: 1px solid black;
-    margin-top: 3%;
     font-size: 50px;
     text-align: center;
   }
 
   .question {
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
     justify-content: space-between;
-    margin-top: 1%;
 
     .text {
       font-size: 30px;
     }
 
     button {
-      min-width: 2%;
+      //min-width: 2%;
       border-radius: 50%;
+      min-width: 2vw;
+      min-height: 2vw;
       cursor: pointer;
     }
   }
 
   .images {
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border: 1px solid green;
     align-items: center;
-    margin: 5%;
-    margin-bottom: 2%;
 
     [type="radio"] {
       position: absolute;
@@ -66,12 +64,12 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-bottom: 5%;
     button {
-      background: green;
+      cursor: pointer;
+      background: #4caf50;
       width: 25%;
       height: 5vh;
-      cursor: pointer;
+      font-size: 20px;
     }
   }
 }
