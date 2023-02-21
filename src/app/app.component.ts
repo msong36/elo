@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Elo } from 'src/app/elo';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+/*
+function expected(rating1: number, rating2: number): number {
+  return 1 / (1 + 10 ** ((rating2 - rating1) / 400));
+}
+
+function new_rating(img1: ImageMeta, img2: ImageMeta, gameResult: number) {
+  const rating1 = img1.rating;
+  const rating2 = img2.rating;
+
+  img1.rating = Math.round(rating1 + 32 * (gameResult - expected(rating1, rating2)));
+  img2.rating = Math.round(rating2 + 32 * (1 - gameResult - expected(rating2, rating1)));
+}
+
+var imageArray: Array<ImageMeta> = [];
+function initializeArray() {
+  // clear array
+  imageArray.splice(0);
+}*/
+
 export class AppComponent {
   title = 'elo';
 
@@ -24,5 +45,10 @@ export class AppComponent {
 
   outputHandler(thing: Array<string>) {
     console.log('ALL TASKS DONE: ', thing);
+  }
+
+  test(): void {
+    var l = new Elo;
+    console.log(l.hello());
   }
 }
