@@ -34,7 +34,7 @@ export class AppComponent {
     this.elo = new Elo("../assets/elo.json", "../assets/nose/");
     // wait for promise
     this.elo.ready.then(() => {
-      this.task = this.elo.generateTask(5);
+      this.task = this.elo.generateTask(1);
     }).then(() => {
       this.imageArray = this.task[0];
       this.inputArray = this.task[1];
@@ -63,8 +63,9 @@ export class AppComponent {
     ['../../assets/nose/nose_1509.png', '../../assets/nose/nose_1510.png']
   ];*/
 
-  outputHandler(thing: Array<string>) {
-    console.log('ALL TASKS DONE: ', thing);
+  outputHandler(gameResults: Array<string>) {
+    console.log('ALL TASKS DONE: ', gameResults);
+    this.elo.adjustRatings(this.imageArray, gameResults);
   }
 
   test(): void {
