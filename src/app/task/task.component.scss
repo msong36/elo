@@ -7,32 +7,37 @@
   gap: 2em;
 
   .heading {
-    border: 1px solid black;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
   }
 
   .question {
-    border: 1px solid black;
+    border-radius: 10px;
+    background: #d9d9d9;
+    line-height: 24px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     .text {
-      font-size: 30px;
+      font-size: 20px;
+      font-weight: 400;
+      margin: 1em;
     }
 
     button {
       //min-width: 2%;
       border-radius: 50%;
-      min-width: 2vw;
-      min-height: 2vw;
+      width: 3vw;
+      height: 3vw;
+      margin-right: 1%;
+      font-size: 25px;
       cursor: pointer;
     }
   }
 
   .images {
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -49,27 +54,42 @@
       cursor: pointer;
       object-fit: contain;
       width: 25vw;
+      background-color: gray;
+      border-radius: 20px;
     }
 
     [type="radio"]:checked + img {
-      outline: 2px solid red;
+      outline: 12px solid #1ba040;
+      border-radius: 20px;
     }
 
     .text {
       font-size: 40px;
+      font-weight: 400;
     }
   }
 
-  .next-button {
+  .button-row {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    button {
+    #same {
       cursor: pointer;
-      background: #4caf50;
+      background: #d9d9d9;
+      border-radius: 10px;
+      width: 25vw;
+      font-size: 40px;
+      font-weight: 400;
+      margin-right: 10vw;
+    }
+    #next {
+      cursor: pointer;
+      background: #24a0ed;
       width: 25%;
-      height: 5vh;
-      font-size: 20px;
+      height: 10vh;
+      font-size: 40px;
+      font-weight: 400;
+      border-radius: 10px;
     }
   }
 }
