@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, Inject } from '@angular/core';
 import { Elo } from 'src/app/elo';
 
@@ -29,7 +30,27 @@ function initializeArray() {
 export class AppComponent {
   title = 'elo';
 
-  inputArray: Array<[string, string]> = [
+  ngOnInit(): void {
+    this.elo = new Elo("../assets/elo.json", "../assets/nose/");
+    // wait for promise
+    this.elo.ready.then(() => {
+      this.task = this.elo.generateTask(5);
+    }).then(() => {
+      this.imageArray = this.task[0];
+      this.inputArray = this.task[1];
+      this.ready = true;
+    })
+  }
+
+  // local UI state
+  elo!: Elo;
+  task: [Array<[number, number]>, Array<[string, string]>] = [[], []];
+  imageArray: Array<[number, number]> = [];
+  inputArray: Array<[string, string]> = [];
+  ready = false;
+  question = "Select the wider nose.";
+
+  /*inputArray: Array<[string, string]> = [
     ['../../assets/nose/nose_1435.png', '../../assets/nose/nose_1436.png'],
     ['../../assets/nose/nose_1486.png', '../../assets/nose/nose_1487.png'],
     ['../../assets/nose/nose_1439.png', '../../assets/nose/nose_1440.png'],
@@ -40,15 +61,13 @@ export class AppComponent {
     ['../../assets/nose/nose_1449.png', '../../assets/nose/nose_1450.png'],
     ['../../assets/nose/nose_1451.png', '../../assets/nose/nose_1452.png'],
     ['../../assets/nose/nose_1509.png', '../../assets/nose/nose_1510.png']
-  ];
-  question = "Select the wider nose.";
+  ];*/
 
   outputHandler(thing: Array<string>) {
     console.log('ALL TASKS DONE: ', thing);
   }
 
   test(): void {
-    var l = new Elo;
-    console.log(l.hello());
+    console.log(this.elo.generateTask(20));
   }
 }
