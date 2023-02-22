@@ -5,7 +5,6 @@ export class Elo {
     filepath: string = "";
     ready: Promise<void>;
     constructor(jsonFilepath: string, assetDirectory: string) {
-        console.log("constructed");
         this.filepath = assetDirectory;
         // load json and populate json and indexMap
         this.ready = new Promise((resolve) => {
@@ -13,8 +12,6 @@ export class Elo {
                 .then(response => response.json())
                 .then(loadedJson => {
                     this.json = loadedJson;
-                    /* console.log(console.log(loadedJson["nose_1435.png"]));
-                    console.log(this.json["nose_1435.png"]); */
                     this.len = Object.keys(this.json).length;
                     for (var i = 0; i < this.len; i++) {
                         this.indexMap.set(i, Object.keys(this.json)[i]);
@@ -59,7 +56,7 @@ export class Elo {
     }
 
     // adjusts ratings given the game results
-    adjustRatings(imageArray: Array<[number, number]>, gameResults: Array<string>): void {
+    adjustRatings(imageArray: Array<[number, number]>, gameResults: Array<string>): { [key: string]: { "elo": number, "iterations": number } } {
         function expected(rating1: number, rating2: number): number {
             return 1 / (1 + 10 ** ((rating2 - rating1) / 400));
         }
@@ -73,7 +70,6 @@ export class Elo {
             } else if (gameResults[i] === "lose") {
                 scores = [0, 1];
             }
-            console.log(img0.elo, img1.elo);
             let img0_old = img0.elo, img1_old = img1.elo;
             img0.elo = Math.round(img0_old + 32 * (scores[0] - expected(img0_old, img1_old)));
             img1.elo = Math.round(img1_old + 32 * (scores[1] - expected(img1_old, img0_old)));
@@ -81,7 +77,6 @@ export class Elo {
             img1.iterations += 1;
         }
 
-        console.log(this.json);
-        return;
+        return this.json;
     }
 }

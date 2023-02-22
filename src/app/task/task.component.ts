@@ -13,6 +13,7 @@ export class TaskComponent implements OnInit {
   @Output() outputArray = new EventEmitter<Array<string>>();
   img1: string = "";
   img2: string = "";
+  showJson: boolean = false;
 
   constructor() { }
 
@@ -31,6 +32,12 @@ export class TaskComponent implements OnInit {
     console.log("TODO: help modal");
   }
 
+  same() {
+    this.gameResults.push("draw");
+    this.goNext();
+    return;
+  }
+
   next() {
     // check if a radio button is checked
     var radioCheck = document.querySelector('input[name="avatars"]:checked');
@@ -41,7 +48,10 @@ export class TaskComponent implements OnInit {
     // get selected value and load into output
     let selectedValue = (radioCheck as HTMLInputElement).value;
     this.gameResults.push(selectedValue);
-    console.log(selectedValue + ' selected');
+    this.goNext();
+  }
+
+  goNext() {
 
     // uncheck radio for next
     var elements = document.getElementsByTagName('input');
@@ -64,5 +74,4 @@ export class TaskComponent implements OnInit {
     this.outputArray.emit(this.gameResults);
     this.tasksFinished = true;
   }
-
 }

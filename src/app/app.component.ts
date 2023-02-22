@@ -33,8 +33,9 @@ export class AppComponent {
   ngOnInit(): void {
     this.elo = new Elo("../assets/elo.json", "../assets/nose/");
     // wait for promise
+    var tasks = window.prompt("Enter number of tasks you want to do\nMake it a number or it breaks");
     this.elo.ready.then(() => {
-      this.task = this.elo.generateTask(1);
+      this.task = this.elo.generateTask(parseInt(tasks as string));
     }).then(() => {
       this.imageArray = this.task[0];
       this.inputArray = this.task[1];
@@ -42,13 +43,17 @@ export class AppComponent {
     })
   }
 
+
   // local UI state
   elo!: Elo;
   task: [Array<[number, number]>, Array<[string, string]>] = [[], []];
   imageArray: Array<[number, number]> = [];
   inputArray: Array<[string, string]> = [];
   ready = false;
-  question = "Select the wider nose.";
+  done = false;
+  question = "Which image presents a face with a greater nose width?";
+
+  debugOutput!: string[];
 
   /*inputArray: Array<[string, string]> = [
     ['../../assets/nose/nose_1435.png', '../../assets/nose/nose_1436.png'],
@@ -65,10 +70,8 @@ export class AppComponent {
 
   outputHandler(gameResults: Array<string>) {
     console.log('ALL TASKS DONE: ', gameResults);
-    this.elo.adjustRatings(this.imageArray, gameResults);
-  }
-
-  test(): void {
-    console.log(this.elo.generateTask(20));
+    const adjustedRatings = this.elo.adjustRatings(this.imageArray, gameResults);
+    this.debugOutput = JSON.stringify(adjustedRatings).split("},");
+    this.done = true;
   }
 }

@@ -28,8 +28,9 @@
     </label>
   </div>
 
-  <div class="next-button">
-    <button (click)="next()">Next</button>
+  <div class="button-row">
+    <button (click)="same()" id="same">Same Nose Width</button>
+    <button (click)="next()" id="next">Next</button>
   </div>
 </div>
 <div *ngIf="tasksFinished">
