@@ -34,8 +34,9 @@ export class AppComponent {
     //this.elo = new Elo("../assets/elo.json", "../assets/nose/");
     this.elo = new Elo("./assets/elo.json", "./assets/nose/")
     // wait for promise
-    var tasks = window.prompt("Enter number of tasks you want to do\nMake it a number or it breaks");
     this.elo.ready.then(() => {
+      return window.prompt("Enter number of tasks you want to do\nMake it a number or it breaks");
+    }).then((tasks) => {
       this.task = this.elo.generateTask(parseInt(tasks as string));
     }).then(() => {
       this.imageArray = this.task[0];
